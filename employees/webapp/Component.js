@@ -25,7 +25,9 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
-            }
+            },
+            // crear un atributo
+            SapId: "esbertmontiel@gmail.com"
         });
     }
 );

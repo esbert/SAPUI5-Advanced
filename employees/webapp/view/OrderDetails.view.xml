@@ -1,0 +1,87 @@
+<mvc:View
+    controllerName="logaligroup.employees.controller.OrderDetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:sc="logaligroup.employees.control">
+    <Page id="_IDGenPage1" >
+        <customHeader>
+            <Bar id="_IDGenBar1" >
+                <contentLeft>
+                    <Button id="_IDGenButton3" icon="sap-icon://nav-back" press="onBack"></Button>
+                </contentLeft>
+                <contentMiddle>
+                    <Text id="_IDGenText5" text="{i18n>orderID}:  {odataNorthwind>OrderID}"/>
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <content>
+            <Panel id="_IDGenPanel1" headerText="{i18n>customerID} {odataNorthwind>CustomerID}">
+                <l:Grid id="_IDGenGrid1" defaultSpan="L6 M6 S12">
+                    <f:Form id="_IDGenForm1" editable="false">
+                        <f:layout>
+                            <f:ResponsiveGridLayout id="_IDGenResponsiveGridLayout1" labelSpanL="6" labelSpanM="6" labelSpanS="12"/>
+                        </f:layout>
+                        <f:formContainers>
+                            <f:FormContainer id="_IDGenFormContainer1" >
+                                <f:formElements>
+                                    <f:FormElement id="_IDGenFormElement1" label="{i18n>orderDate}">
+                                        <f:fields>  
+                                            <Text id="_IDGenText4" text="{path : 'odataNorthwind>OrderDate', type:'sap.ui.model.odata.type.Date'}"></Text>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement id="_IDGenFormElement2" label="{i18n>freight}">
+                                        <f:fields>  
+                                            <Text id="_IDGenText1" text="{odataNorthwind>Freight}"></Text>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement id="_IDGenFormElement3" label="{i18n>shipName}">
+                                        <f:fields>  
+                                            <Text id="_IDGenText3" text="{odataNorthwind>ShipName}"></Text>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement id="_IDGenFormElement4" label="{i18n>shipAddress}">
+                                        <f:fields>  
+                                            <Text id="_IDGenText2" text="{odataNorthwind>ShipAddress}, {odataNorthwind>ShipCity}, {odataNorthwind>ShipCountry}"></Text>
+                                        </f:fields>
+                                    </f:FormElement>
+                                  </f:formElements>
+                            </f:FormContainer>
+                        </f:formContainers>
+                    </f:Form>
+                    <FlexBox id="_IDGenFlexBox1" class="sapUiTinyMarginTop">
+                        <sc:Signature id="signature"></sc:Signature> 
+                        <Button id="_IDGenButton1" text="{i18n>clear}" press="onClearSignature" class="sapUiTinyMarginBegin"/>
+                    </FlexBox>
+                </l:Grid>
+                <UploadCollection id='uploadCollection'
+                                  maximumFilenameLength="55"
+                                  maximumFileSize="10"
+                                  multiple="true"
+                                  sameFilenameAllowed="true"
+                                  instantUpload="true" 
+                                  uploadUrl="/sap/opu/odata/sap/YSAPUI5_SRV_01/FilesSet"   
+                                  change="onFileChange"
+                                  uploadComplete="onFileUploadComplete"
+                                  beforeUploadStarts="onFileBeforeUpload"
+                                  fileDeleted="onFileDeleted"
+                
+                />
+            </Panel>
+            <Panel id="_IDGenPanel2" headerText="{i18n>orderProducts}">
+                <List id="_IDGenList1" items="{path: 'odataNorthwind>Order_Details', parameters:{expand : 'Product'}, factory: '.factoryOrderDetails'}"/>
+            </Panel>
+        </content>
+        <footer>
+            <Toolbar id="_IDGenToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer1"></ToolbarSpacer>
+                <Button id="_IDGenButton2" text="{i18n>saveSignature}" press="onSaveSignature"></Button>
+                
+            </Toolbar>
+        </footer>
+    </Page>
+
+</mvc:View>

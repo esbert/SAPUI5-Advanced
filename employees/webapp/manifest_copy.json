@@ -10,22 +10,13 @@
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
         "dataSources": {
-            "Northwind.svc": {
-                "uri": "V2/Northwind/Northwind.svc/",
+            "mainService": {
+                "uri": "/V2/Northwind/Northwind.svc/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
-                }
-            },
-            "YSAPUI5_SRV_01": {
-                "uri": "sap/opu/odata/sap/YSAPUI5_SRV_01/",
-                "type": "OData",
-                "settings": {
-                    "annotations": [],
-                    "odataVersion": "2.0",
-                    "localUri": "localService/YSAPUI5_SRV_01/metadata.xml"
                 }
             }
         }
@@ -65,28 +56,10 @@
                     "bundleName": "logaligroup.employees.i18n.i18n"
                 }
             },
-            "odataNorthwind": {
-                "dataSource": "Northwind.svc",
+            "": {
+                "dataSource": "mainService",
                 "preload": true,
-                "settings": {
-                    "defaultOperationMode": "Server",
-                    "defaultBindingMode": "OneWay",
-                    "defaultCountMode": "Request",
-                    "refreshAfterChange": false
-                }
-            },
-            "incidenceModel": {
-                "type": "sap.ui.model.odata.v2.ODataModel",
-                "dataSource": "YSAPUI5_SRV_01",
-                "preload": true,
-                "settings": {
-                    "defaultOperationMode": "Server",
-                    "defaultBindingMode": "TwoWay",
-                    "defaultCountMode": "Request",
-                    "refreshAfterChange": false,
-                    "useBatch": false,
-                    "defaultUpdateMethod": "Put"
-                }
+                "settings": {}
             }
         },
         "resources": {
@@ -109,16 +82,9 @@
             "routes": [
                 {
                     "name": "RouteMain",
-                    "pattern": "",
+                    "pattern": "RouteMain",
                     "target": [
                         "TargetMain"
-                    ]
-                },
-                {
-                    "name": "RouteOrderDetails",
-                    "pattern": "OrderDetails/{OrderID}",
-                    "target": [
-                        "TargetOrderDetails"
                     ]
                 }
             ],
@@ -130,17 +96,21 @@
                     "viewId": "Main",
                     "viewName": "Main"
                 },
-                "TargetOrderDetails": {
+                "TargetMasterEmployee": {
                     "viewType": "XML",
-                     "viewName": "OrderDetails"
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MasterEmployee",
+                    "viewName": "MasterEmployee"
                 }
+
             }
         },
         "rootView": {
-            "viewName": "logaligroup.employees.view.App",
+            "viewName": "logaligroup.employees.view.Main",
             "type": "XML",
             "async": true,
-            "id": "app"
+            "id": "Main"
         }
     }
 }
